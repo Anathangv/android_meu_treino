@@ -100,13 +100,15 @@ public class LoginActivity extends AppCompatActivity {
 
         if (etUserName.getText().toString().isEmpty()) {
 
-            Snackbar.make(view, "Necessario Informar Nome", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            //Snackbar.make(view, "Necessario Informar Nome", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            etUserName.setError("Necessario informar nome");
             return false;
 
         }
         if (etUserPassword.getText().toString().isEmpty()){
 
-            Snackbar.make(view, "Necessario Informar Password", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            //Snackbar.make(view, "Necessario Informar Password", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            etUserPassword.setError("Necessario Informar Password");
             return false;
 
         }
@@ -114,13 +116,15 @@ public class LoginActivity extends AppCompatActivity {
 
             if (etUserConfirmPassword.getText().toString().isEmpty()) {
 
-                Snackbar.make(view, "Necessario Confirmar Password", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //Snackbar.make(view, "Necessario Confirmar Password", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                etUserConfirmPassword.setError("Necessario Confirmar Password");
                 return false;
 
             }else{
                 if (!etUserPassword.getText().toString().equals(etUserConfirmPassword.getText().toString())) {
 
-                    Snackbar.make(view, "Password e confirmacao sao diferentes", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    //Snackbar.make(view, "Password e confirmacao sao diferentes", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    etUserConfirmPassword.setError("Password e confirmacao sao diferentes");
                     return false;
 
                 }

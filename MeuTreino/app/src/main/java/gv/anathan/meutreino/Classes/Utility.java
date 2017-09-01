@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 public class Utility {
 
@@ -22,6 +23,9 @@ public class Utility {
     }
 
     public static void showLoading(Context context){
+
+        Log.i("AppInfo","show loading");
+
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Carregando..");
         progressDialog.setIndeterminate(false);
@@ -30,6 +34,7 @@ public class Utility {
     }
 
     public static void dismissLoading(){
+        Log.i("AppInfo","dismiss loading");
         progressDialog.dismiss();
     }
 
