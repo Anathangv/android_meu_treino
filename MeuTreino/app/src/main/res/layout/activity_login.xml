@@ -5,61 +5,6 @@
     android:layout_height="match_parent"
     tools:context="gv.anathan.meutreino.LoginActivity">
 
-    <!--
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="196dp"
-        android:id="@+id/etUserName"
-        android:hint="User" />
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="11dp"
-        android:id="@+id/etUserPassword"
-        android:hint="Password"
-        android:layout_below="@+id/etUserName"
-        android:layout_alignStart="@+id/etUserName" />
-
-    <EditText
-        android:id="@+id/etUserConfirmPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etUserPassword"
-        android:layout_below="@+id/etUserPassword"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:visibility="invisible"/>
-
-    <Button
-        android:text="Log in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etUserConfirmPassword"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btSignUpLogIn"
-        android:onClick="signUpLogIn" />
-
-    <TextView
-        android:id="@+id/tvLogInSigUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btSignUpLogIn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:text="Sign up"
-        android:onClick="alternateSignUpLogIn"/>
-
-       -->
 
     <LinearLayout
         android:layout_width="wrap_content"

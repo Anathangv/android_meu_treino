@@ -64,7 +64,7 @@ public class WorkoutLogsAdapter extends ArrayAdapter{
 
         //shows the workout log number
         final TextView tvWorkoutLogNumber = (TextView) layout.findViewById(R.id.tvWorkoutLogNumber);
-        tvWorkoutLogNumber.setText(String.valueOf(position + 1));
+        tvWorkoutLogNumber.setText(String.valueOf(workoutLogList.size() - position));
 
         //shows the begin date
         final TextView tvBeginDate = (TextView) layout.findViewById(R.id.tvBeginDate);

@@ -2,12 +2,14 @@ package gv.anathan.meutreino;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -56,13 +58,31 @@ public class Main extends AppCompatActivity {
 
         workoutLogList = new ArrayList<WorkoutLog>();
         lvWorkoutLog = (ListView) findViewById(R.id.lvWorkoutLog);
+        lvWorkoutLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        loadWorkoutLogList();
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                openWorkoutsActivity(workoutLogList.get(position).getId(),workoutLogList.get(position).getdateBegin());
+            }
+        });
+
+        loadWorkoutLogs();
+    }
+
+
+    //move to workout activity
+    public void openWorkoutsActivity(String id, String dataBegin){
+        Intent i = new Intent(getApplicationContext(),Workouts.class);
+        i.putExtra("idParameter", id);
+        i.putExtra("beginDateParameter", dataBegin);
+        //i.putExtra("noteParameter", etNote.getText().toString());
+        startActivity(i);
     }
 
 
     //displays all user's the workout logs
-    public void loadWorkoutLogList(){
+    public void loadWorkoutLogs(){
 
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("WorkoutLogs");
         query.whereEqualTo("userId",ParseUser.getCurrentUser().getObjectId());
@@ -75,15 +95,12 @@ public class Main extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
 
-                int workoutLogListCount = 0;
-
                 if (e == null) {
 
                     if (objects.size() > 0) {
 
                         for (ParseObject parseWorkouLog : objects) {
 
-                            workoutLogListCount += 1;
 
                             WorkoutLog workoutLog = new WorkoutLog(parseWorkouLog.getObjectId(),
                                     parseWorkouLog.getString("beginDate"),
@@ -91,8 +108,8 @@ public class Main extends AppCompatActivity {
                                     parseWorkouLog.getString("note"));
                             workoutLogList.add(workoutLog);
 
-                            //mount the listView only when all the workout logs are in the list
-                            if (workoutLogListCount == objects.size()) {
+                            //create the listView only when all the workout logs are in the list
+                            if (workoutLogList.size() == objects.size()) {
 
                                 WorkoutLogsAdapter workoutLogsAdapter = new WorkoutLogsAdapter(Main.this, R.layout.workout_log_listview_item, workoutLogList);
                                 lvWorkoutLog.setAdapter(workoutLogsAdapter);
@@ -101,6 +118,7 @@ public class Main extends AppCompatActivity {
                         }
                     }
                 }else{
+
                     Toast.makeText(getApplicationContext(),"Erro ao carregar fichas",Toast.LENGTH_LONG).show();
                 }
 
@@ -144,9 +162,11 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new DatePickerDialog(v.getContext(), date, calendarBeginDate.get(Calendar.YEAR),
-                                                 calendarBeginDate.get(Calendar.MONTH),
-                                                 calendarBeginDate.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(v.getContext(),
+                                     date,
+                                     calendarBeginDate.get(Calendar.YEAR),
+                                     calendarBeginDate.get(Calendar.MONTH),
+                                     calendarBeginDate.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -169,14 +189,12 @@ public class Main extends AppCompatActivity {
 
                         if(e == null){
 
-                            //move to the next intent
-                            //Intent i = new Intent(getApplicationContext(),TrainingSheetModules.class);
-                            //i.putExtra("beginDateParameter", etDateBegin.getText().toString());
-                            //i.putExtra("noteParameter", etNote.getText().toString());
-                            //startActivity(i);
-                            //Toast.makeText(getApplicationContext(), "Created",Toast.LENGTH_LONG).show();
+                            //go to the next activity
+                            openWorkoutsActivity(null, etDateBegin.getText().toString());
+                            Toast.makeText(getApplicationContext(), "Treino criado",Toast.LENGTH_LONG).show();
                             dialog.dismiss();
                         }else{
+
                             Toast.makeText(getApplicationContext(), "Error in saving data",Toast.LENGTH_LONG).show();
                         }
                     }
